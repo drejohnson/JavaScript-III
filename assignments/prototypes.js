@@ -140,3 +140,96 @@ Humanoid.prototype.greet = function() {
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+
+function Hero(attrs) {
+  CharacterStats.call(this, attrs);
+  this.archnemesis = attrs.archnemesis
+}
+
+function Villain(attrs) {
+  CharacterStats.call(this, attrs);
+  this.archnemesis = attrs.archnemesis
+}
+
+Hero.prototype = Object.create(Humanoid.prototype);
+Villain.prototype = Object.create(Humanoid.prototype);
+
+function logAction(enemy) {
+  if (enemy.healthPoints > 5) {
+    return `Damage dealt! ${enemy.name}'s health is now: ${enemy.healthPoints -= 5}`
+  } {
+    alert(`Defeated! ${enemy.destroy()}`)
+  }
+}
+
+Hero.prototype.attackVillain = function(enemy) {
+  return function() {
+    return logAction(enemy)
+  }
+}
+
+Villain.prototype.attackHero = function(enemy) {
+  return function() {
+    return logAction(enemy)
+  }
+}
+
+const braveHero = new Hero({
+  createdAt: new Date(),
+  dimensions: {
+    length: 2,
+    width: 1,
+    height: 2,
+  },
+  healthPoints: health,
+  name: 'Dre',
+  team: 'Brave Heros',
+  weapons: [
+    'War Hammer',
+  ],
+  language: 'Common Tongue',
+});
+
+const evilVillain = new Villain({
+  createdAt: new Date(),
+  dimensions: {
+    length: 1,
+    width: 1,
+    height: 2,
+  },
+  healthPoints: health,
+  name: 'Hendrix',
+  team: 'Evil Villains',
+  weapons: [
+    'Axe',
+  ],
+  language: 'Common Tongue',
+});
+
+let attackVillain = braveHero.attackVillain(evilVillain)
+let attackHero = evilVillain.attackHero(braveHero)
+
+function fight() {
+  if (evilVillain.healthPoints > 0) {
+    if (Math.floor(Math.random() * Math.floor(10)) > 5) {
+      console.log(`${braveHero.name} attacked:`, attackVillain());
+    }
+  } 
+  
+  
+  if (braveHero.healthPoints > 0) {
+    if (Math.floor(Math.random() * Math.floor(10)) < 5) {
+      console.log(`${evilVillain.name} attacked:`, attackHero());
+    }
+  }
+  
+}
+
+fight()
+fight()
+fight()
+fight()
+fight()
+fight()
+fight()
