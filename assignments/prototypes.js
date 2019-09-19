@@ -182,7 +182,7 @@ const braveHero = new Hero({
     width: 1,
     height: 2,
   },
-  healthPoints: health,
+  healthPoints: 25,
   name: 'Dre',
   team: 'Brave Heros',
   weapons: [
@@ -198,7 +198,7 @@ const evilVillain = new Villain({
     width: 1,
     height: 2,
   },
-  healthPoints: health,
+  healthPoints: 25,
   name: 'Hendrix',
   team: 'Evil Villains',
   weapons: [
